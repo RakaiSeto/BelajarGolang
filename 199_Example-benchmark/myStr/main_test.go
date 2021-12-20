@@ -1,21 +1,22 @@
-package main
+package mystr
 
 import (
-	"fmt"
+	"testing"
 	"strings"
-
-	mystr "github.com/RakaiSeto/BelajarGolang/199_Example-benchmark/myStr"
 )
 
 const s = "Exercitation enim qui adipisicing fugiat do. Consectetur ad do ea nostrud mollit irure ex id aliquip irure in cupidatat ut. Lorem consectetur do commodo nisi voluptate reprehenderit proident reprehenderit ad. Sit labore deserunt ad consectetur laborum minim in laboris."
 
-func main() {
-	xs := strings.Split(s, " ")
+var xs = strings.Split(s, " ")
 
-	for _, v := range xs {
-		fmt.Println(v)
+func BenchmarkCat(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		Cat(xs)
 	}
 
-	fmt.Printf("\n%s\n", mystr.Cat(xs))
-	fmt.Printf("\n%s\n\n", mystr.Join(xs))
+}
+func BenchmarkJoin(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		Join(xs)
+	}
 }
